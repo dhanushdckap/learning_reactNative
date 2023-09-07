@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{ useState } from 'react';
-import { StyleSheet, Text, View , FlatList,TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View , FlatList,Alert} from 'react-native';
 import Header from './Componets/header';
 import TodoItems from './Componets/todoItems';
 import AddTodos from './Componets/addTodos';
@@ -20,10 +20,16 @@ export default function App() {
   }
 
   const submitTodos = (text) => {
-    setTodos((CompletedTodo) => {
-      // this is not a right way to add key value
-      return [{text: text, key: Math.random().toString()},...CompletedTodo]
-    })
+    if (text.length > 3) {
+      setTodos((CompletedTodo) => {
+        // this is not a right way to add key value
+        return [{text: text, key: Math.random().toString()},...CompletedTodo]
+      });
+    }else{
+      Alert.alert('OOPS!','Todos in contain atleast 3 char long',[
+        {text: 'Understood',onPress:() => console.log('alert closed')}
+      ]);
+    }
 }
 
   return (
