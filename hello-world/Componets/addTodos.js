@@ -30,3 +30,5 @@ const styles = StyleSheet.create({
         borderBottomColor:'#ddd'
     }
 })
+
+// net ninja episode_11 completed added new todo items.
