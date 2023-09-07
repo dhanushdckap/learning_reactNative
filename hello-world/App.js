@@ -3,6 +3,7 @@ import React,{ useState } from 'react';
 import { StyleSheet, Text, View , FlatList,TouchableOpacity} from 'react-native';
 import Header from './Componets/header';
 import TodoItems from './Componets/todoItems';
+import AddTodos from './Componets/addTodos';
 
 export default function App() {
 
@@ -18,12 +19,20 @@ export default function App() {
     })
   }
 
+  const submitTodos = (text) => {
+    setTodos((CompletedTodo) => {
+      // this is not a right way to add key value
+      return [{text: text, key: Math.random().toString()},...CompletedTodo]
+    })
+}
+
   return (
     <View style={styles.container}>
       {/*header*/}
       <Header />
       <View style={styles.content}>
         {/* for form */}
+        <AddTodos submitTodos={submitTodos}/>
         <View style={styles.list}>
           <FlatList
             data = {todos}
